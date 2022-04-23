@@ -1,7 +1,9 @@
 package com.example.kotlinmvvm_ecommerce.di
 
+import com.example.kotlinmvvm_ecommerce.api.CartApiInterface
 import com.example.kotlinmvvm_ecommerce.api.CategoryApiInterface
 import com.example.kotlinmvvm_ecommerce.api.ProductApiInterface
+import com.example.kotlinmvvm_ecommerce.api.UserApiInterface
 import com.example.kotlinmvvm_ecommerce.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -35,4 +37,23 @@ object ApiAppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(CategoryApiInterface::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUserRetrofitInstance(BASE_URL:String):UserApiInterface=
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(UserApiInterface::class.java)
+
+    @Provides
+    @Singleton
+    fun provideCartRetrofitInstance(BASE_URL:String):CartApiInterface=
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(CartApiInterface::class.java)
 }
+

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.ProductDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_above="@+id/addToCart"
+            android:layout_alignParentTop="true"
+            android:id="@+id/mainScrollLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/productImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:src="@drawable/ic_launcher_background"
+                    android:scaleType="fitXY"/>
+
+                <TextView
+                    android:textAllCaps="true"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/productCategory"
+                    android:textSize="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product Category"/>
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:id="@+id/productName"
+                        android:layout_weight="1"
+                        android:textSize="20dp"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="Product Name is very long what will happen"/>
+                    <TextView
+                        android:textColor="@color/purple_700"
+                        android:textSize="20dp"
+                        android:gravity="end"
+                        android:id="@+id/productPrice"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Product Price"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:id="@+id/productDescription"
+                    android:textSize="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "/>
+
+
+                <RatingBar
+                    android:layout_gravity="center"
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/ratingBarStyle"
+                    android:numStars="5"
+                    android:stepSize="0.1"
+                    android:isIndicator="true" />
+
+                <TextView
+                    android:textSize="30dp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Quantity"/>
+                <EditText
+                    android:textColor="@color/black"
+                    android:id="@+id/quantityEdittext"
+                    android:layout_width="match_parent"
+                    android:text="1"
+                    android:textSize="30dp"
+                    android:textAlignment="center"
+                    style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+                    android:layout_height="50dp"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+        <Button
+            android:id="@+id/addToCart"
+            android:layout_margin="10dp"
+            android:padding="20dp"
+            android:layout_alignParentBottom="true"
+            android:text="Add to cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

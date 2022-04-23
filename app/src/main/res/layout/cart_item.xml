@@ -35,11 +35,10 @@
                 <TextView
                     android:textAllCaps="true"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/productCategory"
+                    android:id="@+id/productQTY"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Category"
-                    android:textStyle="bold"
+                    android:text="Total QTY - "
                     android:textSize="15dp"
                     android:layout_marginLeft="10dp"
                     />
