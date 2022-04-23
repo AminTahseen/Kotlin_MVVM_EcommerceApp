@@ -29,12 +29,13 @@ import kotlinx.coroutines.launch
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinmvvm_ecommerce.adapters.CategoryAdapter
 import com.example.kotlinmvvm_ecommerce.adapters.ProductAdapter
+import com.example.kotlinmvvm_ecommerce.listeners.CategorySelectListener
 import com.example.kotlinmvvm_ecommerce.utils.InternetManager
 import com.google.android.material.snackbar.Snackbar
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),CategorySelectListener {
     private lateinit var productApiInterface: ProductApiInterface
     private lateinit var productsApiRepository: ProductsApiRepository
     private lateinit var productViewModel: ProductViewModel
@@ -47,13 +48,13 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var categoryRecycler:RecyclerView
     private lateinit var productRecycler:RecyclerView
+    var categorySelectListener: CategorySelectListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         linkXML()
         initUI()
-
 
         InternetManager.Network.isNetworkAvailableWithInternetAccess(this).observe(
             this, Observer {
@@ -89,9 +90,9 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             })
+        categorySelectListener=this
 
     }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val menuInflater:MenuInflater= menuInflater
         menuInflater.inflate(R.menu.toolbar_menu,menu)
@@ -104,7 +105,6 @@ class MainActivity : AppCompatActivity() {
         productRecycler=findViewById(R.id.productRecycler)
         productRecycler.layoutManager=LinearLayoutManager(this)
     }
-
     private fun initUI(){
         productApiInterface=ApiAppModule.provideProductRetrofitInstance(ApiAppModule.provideBaseURL())
         productsApiRepository= ProductsApiRepository(productApiInterface)
@@ -121,12 +121,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setCategoryAdapter(){
-        val categoryAdapter=CategoryAdapter(categoryList,this@MainActivity)
+        val categoryAdapter=CategoryAdapter(categoryList,this,this@MainActivity)
         categoryRecycler.adapter=categoryAdapter
     }
 
     private fun setProductAdapter(){
         val productAdapter=ProductAdapter(productList,this@MainActivity)
         productRecycler.adapter=productAdapter
+    }
+
+    override fun selectCategory(categoryName: String) {
+        Log.d("categorySelected",categoryName);
     }
 }
